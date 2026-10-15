@@ -9,5 +9,5 @@ RUN a2enmod rewrite
 # 將專案內的所有檔案複製到 Apache 的網頁根目錄
 COPY . /var/www/html/
 
-# 設定正確的檔案擁有者權限
+# 設定正確的檔案擁有者權ㄎ限
 RUN chown -R www-data:www-data /var/www/html

@@ -1,5 +1,6 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
+@ini_set('display_errors', 0);
 
 $op         = isset($_REQUEST['op']) ? $_REQUEST['op'] : "";
 $use_ssh    = isset($_REQUEST['ssh_id']) ? 1 : 0;

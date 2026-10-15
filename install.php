@@ -22,7 +22,6 @@ switch ($op) {
 
 function get_xoops_path()
 {
-
     $path = dirname($_SERVER['SCRIPT_FILENAME']) . "/";
     $path = str_replace('\\', '/', $path);
     if (substr($path, -1) == '/') {
@@ -35,32 +34,20 @@ function get_xoops_path()
     }
     $xoops_path['url'] = $url;
 
-    if (strpos($path, '/home') !== false) {
-        $dir_arr = explode("/", $path);
-        $home    = "{$dir_arr[0]}/{$dir_arr[1]}/{$dir_arr[2]}/{$dir_arr[3]}/";
-    } else {
-        $home = str_replace('\\', '/', $_SERVER["DOCUMENT_ROOT"]);
-    }
-    $trust_path               = dirname($home);
-    $xoops_path['home']       = $home;
+    // 強制全部指向網頁根目錄 /var/www/html 內部，避免上層目錄權限不足
+    $home       = $path;
+    $trust_path = $path;
+    
+    $xoops_path['home']        = $home;
     $xoops_path['trust_path'] = $trust_path;
 
-    $www_dir = substr($path, strlen("{$home}"));
-    if (substr($www_dir, 0, 1) == '/') {
-        $www_dir = substr($www_dir, 1);
-    }
+    $subdir = "xoops";
 
-    $subdir = str_replace('/', '_', $www_dir);
-    if (empty($subdir)) {
-        $subdir = "xoops";
-    }
-
-    $xoops_path['subdir']     = $subdir;
-    $xoops_path['xoops_lib']  = "{$trust_path}/{$subdir}_lib";
-    $xoops_path['xoops_data'] = "{$trust_path}/{$subdir}_data";
+    $xoops_path['subdir']      = $subdir;
+    $xoops_path['xoops_lib']  = "{$path}/xoops_lib";
+    $xoops_path['xoops_data'] = "{$path}/xoops_data";
     return $xoops_path;
 }
-
 function install_setup()
 {
 

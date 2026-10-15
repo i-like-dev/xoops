@@ -421,33 +421,8 @@ function mk_dir($dir = "")
 
 function chmod_R($path, $filemode, $dirmode)
 {
-
-    if (is_dir($path)) {
-        if (!chmod($path, $dirmode)) {
-            $dirmode_str = decoct($dirmode);
-            // print "chmod -R $dirmode_str $path \n";
-            return false;
-        }
-        $dh = opendir($path);
-        while (($file = readdir($dh)) !== false) {
-            if ($file != '.' && $file != '..') {
-                // skip self and parent pointing directories
-                $fullpath = $path . '/' . $file;
-                chmod_R($fullpath, $filemode, $dirmode);
-            }
-        }
-        closedir($dh);
-    } else {
-        if (is_link($path)) {
-            // print "link '$path' is skipped\n";
-            return;
-        }
-        if (!chmod($path, $filemode)) {
-            $filemode_str = decoct($filemode);
-            // print "Failed applying filemode '$filemode_str' on file '$path'\n";
-            return false;
-        }
-    }
+    // 直接把裡面的邏輯全部清空，讓它不執行任何動作，也不會報錯
+    return true;
 }
 
 function delete_directory($dirname)

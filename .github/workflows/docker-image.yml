@@ -23,4 +23,4 @@ jobs:
         context: .
         push: true
         tags: |
-          i-like-dev/xoops:latest
+          1x572390/xoops:latest

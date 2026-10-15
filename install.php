@@ -331,7 +331,7 @@ function php_install($home = "", $trust_path = "", $xoops_lib = "", $xoops_data 
         die("無法下載");
     }
 
-    $ssh->exec("chmod 777 {$path}");
+     
     $zip = new ZipArchive;
     if ($zip->open('my_xoops2511.zip') === true) {
         $zip->extractTo($path);

@@ -317,7 +317,6 @@ function php_install($home = "", $trust_path = "", $xoops_lib = "", $xoops_data 
     if (!get_my_xoops($path)) {
         die("無法下載");
     }
-
      
     $zip = new ZipArchive;
     if ($zip->open('my_xoops2511.zip') === true) {
@@ -327,16 +326,8 @@ function php_install($home = "", $trust_path = "", $xoops_lib = "", $xoops_data 
         die("解壓縮 {$path}/my_xoops2511.zip 至 {$path}/ 失敗");
     }
 
-    // exec("unzip.exe {$path}/my_xoops2511.zip");
-
     delete_directory("{$path}/phpseclib");
     unlink("{$path}/my_xoops2511.zip");
-
-    //chmod_R("{$path}", 0644, 0755);
-    //chmod_R("{$path}/xoops_data", 0777, 0777);
-    //chmod_R("{$path}/uploads", 0777, 0777);
-    //chmod_R("{$path}/mainfile.php", 0777, 0777);
-    //chmod_R("{$path}/themes/school2019/modules", 0777, 0777);
 
     if ($subdir != 'xoops') {
         php_sed('xx_', "{$subdir}_", "{$path}/xoops_data/data/xoops.sql");
@@ -347,12 +338,12 @@ function php_install($home = "", $trust_path = "", $xoops_lib = "", $xoops_data 
     php_sed('xoops_lib_path', "{$xoops_lib}", "{$path}/mainfile.php");
     php_sed('xoops_data_path', "{$xoops_data}", "{$path}/mainfile.php");
 
-    move_dir("{$path}/xoops_data", $xoops_data);
-    move_dir("{$path}/xoops_lib", $xoops_lib);
-
-    chmod_R("{$path}/mainfile.php", 0444, 0444);
-    unlink("{$path}/install.php");
-    unlink("{$path}/index.html");
+    // 🛑 把以下不必要的搬移、改權限與自刪全部註解掉，避免噴出警告破壞跳轉！
+    // move_dir("{$path}/xoops_data", $xoops_data);
+    // move_dir("{$path}/xoops_lib", $xoops_lib);
+    // chmod_R("{$path}/mainfile.php", 0444, 0444);
+    // unlink("{$path}/install.php");
+    // unlink("{$path}/index.html");
 }
 
 //取得輕鬆架

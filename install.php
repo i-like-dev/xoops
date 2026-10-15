@@ -332,11 +332,11 @@ function php_install($home = "", $trust_path = "", $xoops_lib = "", $xoops_data 
     delete_directory("{$path}/phpseclib");
     unlink("{$path}/my_xoops2511.zip");
 
-    chmod_R("{$path}", 0644, 0755);
-    chmod_R("{$path}/xoops_data", 0777, 0777);
-    chmod_R("{$path}/uploads", 0777, 0777);
-    chmod_R("{$path}/mainfile.php", 0777, 0777);
-    chmod_R("{$path}/themes/school2019/modules", 0777, 0777);
+    //chmod_R("{$path}", 0644, 0755);
+    //chmod_R("{$path}/xoops_data", 0777, 0777);
+    //chmod_R("{$path}/uploads", 0777, 0777);
+    //chmod_R("{$path}/mainfile.php", 0777, 0777);
+    //chmod_R("{$path}/themes/school2019/modules", 0777, 0777);
 
     if ($subdir != 'xoops') {
         php_sed('xx_', "{$subdir}_", "{$path}/xoops_data/data/xoops.sql");
